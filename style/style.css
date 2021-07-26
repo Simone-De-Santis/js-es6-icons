@@ -1,0 +1,17 @@
+.my-setting-header {
+  height: 92px;
+}
+.my-setting-article {
+  height: calc(100vh - 148px);
+  background-color: #bfbebe;
+}
+
+.animals {
+  color: royalblue;
+}
+.vegetable {
+  color: goldenrod;
+}
+.user {
+  color: rebeccapurple;
+}
