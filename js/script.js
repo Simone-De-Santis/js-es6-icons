@@ -12,3 +12,45 @@ Creiamo una select con i tipi di icone e usiamola per filtrare le icone
 BONUS: Provare ad aggiungere una casella di testo che renda possibile filtrare anche per nome dell'icona
 SUPER INCREDIBLE MEGA BONUS: effettuare la ricerca dalla casella di testo in "tempo reale", cioè man mano che l'utente digita.
 s */
+
+/*
+const icons = [
+  {
+    name: 'cat',
+    prefix: 'fa-',
+    type: 'animal',
+    family: 'fas',
+  },
+
+  <section class="container">
+    <div class="row g-3 ">
+      <div class="col-2 offset-1 ">
+        <div class="card ">
+          <div class="card-body">
+            <i class="fas fa-cat fa-6x"></i>
+            <h3>cat</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>;
+  */
+
+// console.log(icons);
+let iconsTemplate = "";
+icons.forEach((element, index, arr) => {
+  iconsTemplate += `
+  <div class="col-2 ">
+    <div class="card ">
+      <div class="card-body">
+        <i class="${element.family} ${element.prefix}${element.name} ${element.prefix}6x"></i>
+        <h3>${element.name.toUpperCase()}</h3>
+      </div>
+    </div>
+   </div>
+   `;
+});
+
+console.log(iconsTemplate);
+const cardsSection = document.querySelector("#section-card");
+cardsSection.innerHTML = iconsTemplate;
