@@ -58,8 +58,22 @@ const renderIcons = (icons, targetElement) => {
   });
   targetElement.innerHTML = iconsTemplate;
 };
-
-//? prendiamo il singolo elemento
+//# filtro dinamico
+const renderOption = (iconsArrey, targetElement) => {
+  const iconTypes = [];
+  iconsArrey.forEach((icon) => {
+    if (!iconTypes.includes(icon.type)) {
+      iconTypes.push(icon.type);
+    }
+  });
+  let options = '<option value="all" selected>Filtra per tipo</option>';
+  iconTypes.forEach((type) => {
+    options += `
+    <option value="${type}">${type.toUpperCase()}</option>
+    `;
+  });
+  targetElement.innerHTML = options;
+};
 
 //!stampa in pagina
 const cardsSection = document.querySelector("#section-card .row");
@@ -79,3 +93,5 @@ selectField.addEventListener("change", () => {
   });
   renderIcons(filteredIcons, cardsSection);
 });
+
+renderOption(icons, selectField);
