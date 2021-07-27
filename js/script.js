@@ -37,20 +37,45 @@ const icons = [
   */
 
 // console.log(icons);
-let iconsTemplate = "";
-icons.forEach((element, index, arr) => {
-  iconsTemplate += `
-  <div class="col-2 ">
-    <div class="card ">
-      <div class="card-body">
-        <i class="${element.family} ${element.prefix}${element.name} ${element.prefix}6x"></i>
-        <h3>${element.name.toUpperCase()}</h3>
-      </div>
-    </div>
-   </div>
-   `;
-});
 
-console.log(iconsTemplate);
-const cardsSection = document.querySelector("#section-card");
-cardsSection.innerHTML = iconsTemplate;
+const renderIcons = (icons, targetElement) => {
+  let iconsTemplate = "";
+  icons.forEach((element, index, arr) => {
+    let hasOffset = "";
+    if (index % 5 == 0) {
+      hasOffset = "offset-md-1";
+    }
+    iconsTemplate += `
+    <div class="col-12 col-sm-4 col-md-2 ${hasOffset} ">
+      <div class="card h-100">
+        <div class="card-body">
+          <i class="${element.family} ${element.prefix}${element.name} ${element.prefix}4x ${element.type} id="icons"></i>
+          <h3>${element.name.toUpperCase()}</h3>
+        </div>
+      </div>
+     </div>
+     `;
+  });
+  targetElement.innerHTML = iconsTemplate;
+};
+
+//? prendiamo il singolo elemento
+
+//!stampa in pagina
+const cardsSection = document.querySelector("#section-card .row");
+renderIcons(icons, cardsSection);
+
+//! logica filtri
+
+const selectField = document.getElementById("type-filter");
+selectField.addEventListener("change", () => {
+  const filterValue = selectField.value;
+  if (filterValue === "all") {
+    renderIcons(icons, cardsSection);
+    return;
+  }
+  const filteredIcons = icons.filter((icon) => {
+    return filterValue === icon.type ? true : false;
+  });
+  renderIcons(filteredIcons, cardsSection);
+});

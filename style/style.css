@@ -2,11 +2,12 @@
   height: 92px;
 }
 .my-setting-article {
-  height: calc(100vh - 148px);
+  min-height: calc(100vh - 148px);
+  min-width: 100%;
   background-color: #bfbebe;
 }
 
-.animals {
+.animal {
   color: royalblue;
 }
 .vegetable {
@@ -14,4 +15,8 @@
 }
 .user {
   color: rebeccapurple;
+}
+
+.company {
+  color: chocolate;
 }
